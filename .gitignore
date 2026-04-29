@@ -2,6 +2,9 @@
 __pycache__/
 *.py[codz]
 *$py.class
+Bank Statements/
+Liberate Reports/
+SAP Exports/
 
 # C extensions
 *.so
