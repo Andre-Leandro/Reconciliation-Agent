@@ -1,7 +1,7 @@
 import pdfplumber
 import pandas as pd
 
-pdf_path = "Bank Statements/FEB 2026/380911 f.pdf"
+pdf_path = "Bank Statements/NOV 2025/380911.pdf"
 excel_output = "EB_11137480.xlsx"
 
 columnas = ["DATE", "TRANSACTION TYPE", "DESCRIPTION", "DEBITS", "CREDITS", "BALANCE"]
