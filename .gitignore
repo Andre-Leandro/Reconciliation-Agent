@@ -5,6 +5,7 @@ __pycache__/
 Bank Statements/
 Liberate Reports/
 SAP Exports/
+Automatic Reconciliation/
 
 # C extensions
 *.so
