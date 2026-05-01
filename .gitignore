@@ -1,5 +1,6 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
+.DS_Store
 *.py[codz]
 *$py.class
 Bank Statements/
@@ -7,6 +8,7 @@ Liberate Reports/
 SAP Exports/
 Automatic Reconciliation/
 env.txt
+
 # C extensions
 *.so
 
