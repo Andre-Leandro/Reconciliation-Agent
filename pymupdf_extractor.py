@@ -145,24 +145,35 @@ def run_extraction(filepath, out_path):
 
 if __name__ == "__main__":
     filenames = [
-        # "7516 f.pdf",
-        # "380911 SC.pdf",
-        {"input": "FEB 2026/Sagicor Statement 5500120338.pdf",
-         "output": "FEB 2026/EB_11136480.xlsx"
-         },
-         {"input": "JAN 2026/5500120338.pdf",
-          "output": "JAN 2026/EB_11136480.xlsx"
-         },
-         {"input": "DEC 2025/5500120338.pdf",
-          "output": "DEC 2025/EB_11136480.xlsx"
-        },
-        {"input": "NOV 2025/5500120338 NOV 1-15,2025.pdf",
-         "output": "NOV 2025/EB_11136480-1.xlsx"
-        },
-        {"input": "NOV 2025/5500120338 NOV 15-30,2025.pdf",
-         "output": "NOV 2025/EB_11136480-2.xlsx"
-        }
+    
+                # {"input": "FEB 2026/Sagicor Statement 5500120338.pdf",
+                #  "output": "FEB 2026/EB_11136480.xlsx"
+                #  },
+                # {"input": "JAN 2026/5500120338.pdf",
+                #  "output": "JAN 2026/EB_11136480.xlsx"
+                #  },
+                # {"input": "DEC 2025/5500120338.pdf",
+                #  "output": "DEC 2025/EB_11136480.xlsx"
+                # },
+                # {"input": "NOV 2025/5500120338 NOV 1-15,2025.pdf",
+                #  "output": "NOV 2025/EB_11136480-1.xlsx"
+                # },
+                # {"input": "NOV 2025/5500120338 NOV 15-30,2025.pdf",
+                #  "output": "NOV 2025/EB_11136480-2.xlsx"
+                # },
 
+        {"input": "FEB 2026/7516 f.pdf",
+         "output": "FEB 2026/EB_11136380.xlsx"
+         },
+         {"input": "JAN 2026/7516 9.pdf",
+          "output": "JAN 2026/EB_11136380.xlsx"
+         },
+         {"input": "DEC 2025/7516 SC.pdf",
+          "output": "DEC 2025/EB_11136380.xlsx"
+        },
+        {"input": "NOV 2025/7516.pdf",
+         "output": "NOV 2025/EB_11136380.xlsx"
+        },
     ]
 
     for filename in filenames:
