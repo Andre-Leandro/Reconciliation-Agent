@@ -4,9 +4,7 @@ import json
 import io
 from dotenv import load_dotenv
 
-# ==========================================
 # 1. CONFIGURACION Y UTILIDADES
-# ==========================================
 
 def load_config(config_path="config.json"):
     with open(config_path, "r") as f:
@@ -131,9 +129,7 @@ def match_by_amount(df1, df2):
             
     return pd.DataFrame(matched_1), pd.DataFrame(matched_2), df1_rem, df2_rem
 
-# ==========================================
 # 2. PROCESO PRINCIPAL
-# ==========================================
 
 def run_reconciliation():
     ENV_FILE = os.getenv("RECON_ENV_FILE", "env.txt")
@@ -170,6 +166,30 @@ def run_reconciliation():
 
     # Definimos los meses a procesar directamente en el código (Abril 2026)
     months = [
+        {
+            "month_name": "November",
+            "month_number": "011",
+            "year": "2025",
+            "sap_file_pattern": "SAP Exports/NOV 2025.xlsx"
+        },
+        {
+            "month_name": "December",
+            "month_number": "012",
+            "year": "2025",
+            "sap_file_pattern": "SAP Exports/DEC 2025.xlsx"
+        },
+        {
+            "month_name": "January",
+            "month_number": "001",
+            "year": "2026",
+            "sap_file_pattern": "SAP Exports/JAN 2026.xlsx"
+        },
+        {
+            "month_name": "February",
+            "month_number": "002",
+            "year": "2026",
+            "sap_file_pattern": "SAP Exports/FEB 2026.xlsx"
+        },
         {
             "month_name": "April",
             "month_number": "003",
@@ -211,9 +231,6 @@ def run_reconciliation():
             # --- FILTRO POR FECHA (POSTING DATE) ---
             if 'Posting Date' in df_sap.columns:
                 df_sap['Posting Date DT'] = pd.to_datetime(df_sap['Posting Date'], errors='coerce')
-                # Mapeo de meses si es necesario, pero month_name suele ser 'April', 'November', etc.
-                # Intentamos extraer el mes del Posting Date
-                # Nota: year viene como string o int desde months
                 target_year = int(year)
                 
                 # Mapeo simple de nombres de meses en inglés a números
@@ -227,7 +244,6 @@ def run_reconciliation():
                     mask_date = (df_sap['Posting Date DT'].dt.month == target_month) & \
                                 (df_sap['Posting Date DT'].dt.year == target_year)
                     df_sap = df_sap[mask_date].copy()
-            # ----------------------------------------
 
             # Lógica de descripción bancaria
             if use_bank and path_exists(bank_path):

@@ -313,7 +313,7 @@
           "prefix": "AB Entries (Transfer 11136780 to 111373)",
           "part1": {
             "account_id": "11136780",
-            "patterns": ["BA\\\\|0760\\\\|", "BA\\\\|0766\\\\|", "BA\\\\|0762\\\\|"],
+            "patterns": ["BA.?0760", "BA.?0766", "BA.?0762"],
             "search_in": "item_text"
           },
           "part2": {}
@@ -324,11 +324,11 @@
           "load_remainder_from": "Cashier 3 Bill Pay",
           "part1": {
             "account_id": "11136780",
-            "patterns": ["BA\\\\|0003\\\\|"],
+            "patterns": ["BA.?0003"],
             "search_in": "item_text"
           },
           "part2": {
-            "account_id": "11136780",
+            "account_id": "11136680",
             "entry_types": "IB",
             "patterns": ["NCB MONIES"],
             "search_in": "both"
@@ -340,7 +340,7 @@
           "part1": {
             "account_id": "11136780",
             "entry_types": "XQ",
-            "patterns": ["BA\\\\|0760\\\\|", "BA\\\\|0766\\\\|", "BA\\\\|0762\\\\|", "BA\\\\|0003\\\\|", "AJ\\\\|2247\\\\|"],
+            "patterns": [ "BA.?0760", "BA.?0766", "BA.?0762", "BA.?0003", "AJ.?2247", "BA.?0008"],
             "contains": false,
             "search_in": "item_text"
           },

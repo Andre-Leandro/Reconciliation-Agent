@@ -22,7 +22,7 @@ if IS_S3:
 # HARDCODED CONFIGURATION (Resto hardcodeado como pediste)
 ACCOUNT = "11136380"
 OFFICE_NO = 1106
-SAP_REL_PATH = "SAP Exports/daily.xlsx"
+SAP_REL_PATH = "SAP Exports/APR 2026.xlsx"
 LIBERATE_REL_PATH = "Liberate Reports"
 
 # Helper para unir rutas (S3 o Local)
