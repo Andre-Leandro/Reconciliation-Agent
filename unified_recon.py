@@ -227,24 +227,7 @@ def run_reconciliation():
             df_sap['G/L Account'] = df_sap['G/L Account'].astype(str)
             df_sap['Journal Entry Type'] = df_sap['Journal Entry Type'].astype(str)
             df_sap['Journal Entry Item Text'] = df_sap['Journal Entry Item Text'].astype(str).fillna("")
-
-            # --- FILTRO POR FECHA (POSTING DATE) ---
-            if 'Posting Date' in df_sap.columns:
-                df_sap['Posting Date DT'] = pd.to_datetime(df_sap['Posting Date'], errors='coerce')
-                target_year = int(year)
-                
-                # Mapeo simple de nombres de meses en inglés a números
-                month_map = {
-                    "January": 1, "February": 2, "March": 3, "April": 4, "May": 5, "June": 6,
-                    "July": 7, "August": 8, "September": 9, "October": 10, "November": 11, "December": 12
-                }
-                target_month = month_map.get(month_name)
-                
-                if target_month:
-                    mask_date = (df_sap['Posting Date DT'].dt.month == target_month) & \
-                                (df_sap['Posting Date DT'].dt.year == target_year)
-                    df_sap = df_sap[mask_date].copy()
-
+            
             # Lógica de descripción bancaria
             if use_bank and path_exists(bank_path):
                 df_bank_stmt = read_excel(bank_path)

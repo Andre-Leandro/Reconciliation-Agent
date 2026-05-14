@@ -3,6 +3,8 @@ import pandas as pd
 from datetime import datetime
 import glob
 from dotenv import load_dotenv
+import warnings
+warnings.filterwarnings('ignore')
 
 # 1. CONFIGURACION INICIAL
 ENV_FILE = os.getenv("RECON_ENV_FILE", "env.txt")
@@ -108,8 +110,8 @@ def process_daily_reconciliation():
         if col in df_sap.columns:
             df_sap[col] = df_sap[col].apply(clean_amount)
             
-    # Filter by account
-    df_sap = df_sap[df_sap['G/L Account'].astype(str).str.contains(ACCOUNT, na=False)].copy()
+    # Filter by accounts 11136[35]xx
+    df_sap = df_sap[df_sap['G/L Account'].astype(str).str.contains(r'11136[35]\d{2}', na=False, regex=True)].copy()
     
     # Find XQ rows for Office 1106
     xq_condition = (df_sap['Journal Entry Type'].str.contains('XQ', na=False, case=False)) & \
@@ -123,6 +125,10 @@ def process_daily_reconciliation():
     bank_condition = (df_sap['Journal Entry Type'].str.contains('ZB|ZR|BR', na=False, case=False)) & \
                      (pd.isna(df_sap['Clearing Journal Entry']) | (df_sap['Clearing Journal Entry'].astype(str).str.strip() == ""))
     df_bank_pool = df_sap[bank_condition].copy()
+    
+    # Pre-normalizar fechas en el pool bancario
+    df_bank_pool['Value Date DT'] = pd.to_datetime(df_bank_pool['Value date'], errors='coerce').dt.date
+    
     df_bank_pool['Match Info'] = ""
     df_bank_pool['matched_date'] = None
     
@@ -165,6 +171,8 @@ def process_daily_reconciliation():
                 if not df_lib.empty:
                     df_lib['Acct Payment Amount'] = df_lib['Acct Payment Amount'].apply(clean_amount)
                     df_lib['matched'] = False
+                    # Pre-normalizar fechas en Liberate
+                    df_lib['Payment Date DT'] = pd.to_datetime(df_lib['Payment Date'], errors='coerce').dt.date
                     
                     levels = [
                         ['Payment Date', 'Batch No.'],
@@ -174,17 +182,23 @@ def process_daily_reconciliation():
                     
                     for idx, bank_row in df_bank_pool[df_bank_pool['matched_date'].isna()].iterrows():
                         sap_amount = bank_row['Amount in Transaction Currency']
-                        if round(sap_amount, 2) == 0: continue
+                        sap_value_date = bank_row['Value Date DT']
+                        if round(sap_amount, 2) == 0 or pd.isna(sap_value_date): continue
                         
+                        # OPTIMIZACION: Filtramos Liberate por la fecha del banco de una vez
+                        df_lib_same_date = df_lib[
+                            (~df_lib['matched']) & (df_lib['Payment Date DT'] == sap_value_date)
+                        ]
+                        if df_lib_same_date.empty: continue
+
                         match_found = False
                         for level_idx, level in enumerate(levels, 1):
                             if match_found: break
-                            if not all(col in df_lib.columns for col in level): continue
+                            if not all(col in df_lib_same_date.columns for col in level): continue
 
-                            unmatched_lib = df_lib[~df_lib['matched']]
-                            if unmatched_lib.empty: break
+                            grouped = df_lib_same_date.groupby(level)['Acct Payment Amount'].sum().reset_index()
                             
-                            grouped = unmatched_lib.groupby(level)['Acct Payment Amount'].sum().reset_index()
+                            # Filter by Amount
                             potential_matches = grouped[grouped['Acct Payment Amount'].round(2).abs() == abs(round(sap_amount, 2))]
                             
                             if not potential_matches.empty:
@@ -193,14 +207,17 @@ def process_daily_reconciliation():
                                 for col in level:
                                     mask &= (df_lib[col] == match_row[col])
                                 
+                                # Aplicamos el match al df_lib original
                                 df_lib.loc[mask & ~df_lib['matched'], 'matched'] = True
                                 match_found = True
                                 df_bank_pool.at[idx, 'Match Info'] = f"Level {level_idx}"
                                 df_bank_pool.at[idx, 'matched_date'] = pdate
                         
                         if not match_found:
-                            unmatched_lib = df_lib[~df_lib['matched']]
-                            potential_matches = unmatched_lib[unmatched_lib['Acct Payment Amount'].round(2).abs() == abs(round(sap_amount, 2))]
+                            # Re-filtramos para match individual (Level 4)
+                            potential_matches = df_lib_same_date[
+                                (df_lib_same_date['Acct Payment Amount'].round(2).abs() == abs(round(sap_amount, 2)))
+                            ]
                             if not potential_matches.empty:
                                 match_idx = potential_matches.index[0]
                                 df_lib.at[match_idx, 'matched'] = True
@@ -239,6 +256,14 @@ def process_daily_reconciliation():
         diff_data = {col: "" for col in COLUMNAS_SALIDA}
         diff_data['Offsetting Account'] = f"NET DIFFERENCE - {pdate_str}"
         diff_data['Amount in Transaction Currency'] = diferencia
+        
+        # Calcular porcentaje conciliado
+        if total_xq != 0:
+            porcentaje = abs(total_bank / total_xq) * 100
+            diff_data['Amount in Global Currency'] = f"Conciliado: {porcentaje:.2f}%"
+        else:
+            diff_data['Amount in Global Currency'] = "Conciliado: N/A"
+
         diff_df = pd.DataFrame([diff_data], columns=COLUMNAS_SALIDA)
         all_output_blocks.append(('SAP', diff_df))
         all_output_blocks.append(('SPACE', pd.DataFrame([['']] * 2)))
