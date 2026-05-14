@@ -19,6 +19,8 @@ def merge_bank_statements(directory, base_name, suffixes):
 
 if __name__ == "__main__":
     target_dir = os.path.join("Bank Statements", "NOV 2025")
-    base = "EB_11136480"
+    base = "EB_11136280"
     output = merge_bank_statements(target_dir, base, ["-1", "-2"])
     print(f"Saved: {output}")
+
+

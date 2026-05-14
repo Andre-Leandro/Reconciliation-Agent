@@ -1,0 +1,357 @@
+{
+  "accounts": [
+    {
+      "account_id": "11136180",
+      "use_bank_file": true,
+      "tabs": [
+        {
+          "name": "Tepins",
+          "prefix": "Tep",
+          "part1": {
+            "entry_types": "XQ",
+            "patterns": ["BA.?0098", "BA.?1134"],
+            "search_in": "item_text",
+            "contains": true
+          },
+          "part2": {
+            "entry_types": "ZB|ZR|BR|IB",
+            "patterns": ["SCOTIA DIRECT CREDIT", "TEPIN", "COLUMBUS"],
+            "search_in": "item_text",
+            "contains": true
+          }
+        },
+        {
+          "name": "Supreme Ventures",
+          "prefix": "SPV",
+          "part1": {
+            "entry_types": "XQ",
+            "patterns": ["BA.?1131"],
+            "search_in": "item_text",
+            "contains": true
+          },
+          "part2": {
+            "entry_types": "ZB|ZR|BR|IB",
+            "patterns": ["00000/S", "SUPREME", "VENTURE"],
+            "search_in": "item_text",
+            "contains": true
+          }
+        },
+        {
+          "name": "Remote Holding",
+          "prefix": "RHL",
+          "part1": {
+            "entry_types": "XQ",
+            "patterns": ["BA.?1132"],
+            "search_in": "item_text",
+            "contains": true
+          },
+          "part2": {
+            "entry_types": "ZB|ZR|BR|IB",
+            "patterns": ["00000/R", "REMOTE", "HOLDING", "BRANCH DEPOSIT"],
+            "search_in": "item_text",
+            "contains": true
+          }
+        },
+        {
+          "name": "VMBS",
+          "prefix": "VM",
+          "part1": {
+            "entry_types": "XQ",
+            "patterns": ["BA.?0009"],
+            "search_in": "item_text",
+            "contains": true
+          },
+          "part2": {
+            "entry_types": "ZB|ZR|BR|IB",
+            "patterns": ["00000/C", "VMBS", "VICTORIA", "MUTUAL", "LEGACY FLOW", "CREDIT MEMO"],
+            "search_in": "item_text",
+            "contains": true
+          }
+        }
+      ]
+    },
+    {
+      "account_id": "11136280",
+      "use_bank_file": true,
+      "tabs": [
+        {
+          "name": "BNS online",
+          "prefix": "Lib Diff BNS Online",
+          "part1": {
+            "entry_types": "XQ",
+            "patterns": ["BA.?0004"],
+            "search_in": "item_text",
+            "contains": true
+          },
+          "part2": {
+            "entry_types": "ZB|ZR|BR|IB",
+            "patterns": ["BILL PAYMENT CREDIT"],
+            "search_in": "item_text",
+            "contains": true
+          }
+        },
+        {
+          "name": "Lib stores",
+          "prefix": "Lib Diff for Stores",
+          "part1": {
+            "entry_types": "XQ",
+            "patterns": [""],
+            "search_in": "item_text",
+            "contains": true
+          },
+          "part2": {
+            "entry_types": "ZB|ZR|BR|IB",
+            "patterns": ["BRANCH DEPOSIT"],
+            "search_in": "item_text",
+            "contains": true
+          }
+        }
+      ]
+    },
+    {
+      "account_id": "11136380",
+      "use_bank_file": true,
+      "tabs": [
+        {
+          "name": "Hoja 1",
+          "prefix": "GKRS CIS ",
+          "part1": {
+            "entry_types": "XQ",
+            "patterns": ["BA.?0026", "BA.?1127"],
+            "search_in": "item_text",
+            "contains": true
+          },
+          "part2": {
+            "entry_types": "ZB|ZR|BR|IB",
+            "patterns": ["GRACE", "KENNEDY"],
+            "search_in": "item_text",
+            "contains": true
+          }
+        }
+      ]
+    },
+    {
+      "account_id": "11136480",
+      "use_bank_file": true,
+      "tabs": [
+        {
+          "name": "Hoja 1",
+          "prefix": "LIB CIS$",
+          "part1": {
+            "entry_types": "XQ",
+            "patterns": ["BA.?0006"],
+            "search_in": "item_text",
+            "contains": true
+          },
+          "part2": {
+            "entry_types": "ZB|ZR|BR|IB",
+            "patterns": ["TRANSFER", "BILL PAYMENT"],
+            "search_in": "item_text",
+            "contains": true
+          }
+        }
+      ]
+    },
+    {
+      "account_id": "11136580",
+      "use_bank_file": true,
+      "tabs": [
+        {
+          "name": "Hoja 1",
+          "prefix": "Carlton BK",
+          "part1": {
+            "entry_types": "XQ",
+            "patterns": ["BA.?0701", "BA.?0702", "BA.?1037", "BA.?1038"],
+            "search_in": "item_text",
+            "contains": true
+          },
+          "part2": {
+            "entry_types": "ZB|ZR|BR|IB",
+            "patterns": ["BE CASH DEPOSIT", "EMPTY / UNNAMED"],
+            "search_in": "item_text",
+            "contains": true
+          }
+        }
+      ]
+    },
+    {
+      "account_id": "11137280",
+      "use_bank_file": false,
+      "tabs": [
+        {
+          "name": "Hoja 1",
+          "prefix": "Lib Diff ",
+          "part1": {
+            "entry_types": "XQ",
+            "patterns": ["BA.?0600"],
+            "search_in": "item_text",
+            "contains": true
+          },
+          "part2": {
+            "entry_types": "ZB|ZR|BR|IB",
+            "patterns": ["NONREF", "FLOW", "JAMAICA", "FCIB FUNDS"],
+            "search_in": "item_text",
+            "contains": true
+          }
+        }
+      ]
+    },
+    {
+      "account_id": "11137380",
+      "use_bank_file": true,
+      "tabs": [
+        {
+          "name": "Prime trust",
+          "prefix": "Prime Trust Diff",
+          "part1": {
+            "entry_types": "XQ",
+            "patterns": ["BA.?1129"],
+            "search_in": "item_text",
+            "contains": true
+          },
+          "part2": {
+            "entry_types": "ZB|ZR|BR|IB",
+            "patterns": ["BRANCH DEPOSIT", "NIGHT DEPOSIT", "DEPOSIT BEARER", "PRIME", "TRUST", "SCOTIA DIRECT CREDIT"],
+            "search_in": "item_text",
+            "contains": true
+          }
+        },
+        {
+          "name": "Awarex",
+          "prefix": "Lib Diff for Awarex",
+          "part1": {
+            "entry_types": "XQ",
+            "patterns": ["BA.?1124", "BA.?1122", "BA.?1151", "AJ.?2252", "AJ.?2232"],
+            "search_in": "item_text",
+            "contains": true
+          },
+          "part2": {
+            "entry_types": "ZB|ZR|BR|IB",
+            "patterns": ["(?s)(?=.*(?:VI|MC))(?=.*05636694)"],
+            "search_in": "description",
+            "contains": true
+          }
+        },
+        {
+          "name": "Kiosk",
+          "prefix": "Lib Diff for Kiosk",
+          "part1": {
+            "entry_types": "XQ",
+            "patterns": ["BA.?1129", "BA.?1124", "BA.?1122", "BA.?1151", "AJ.?2252", "AJ.?2232"],
+            "search_in": "item_text",
+            "contains": false
+          },
+          "part2": {
+            "entry_types": "ZB|ZR|BR|IB",
+            "patterns": ["(?s)(?=.*(?:VI|MC))(?=.*06748004)", "POS MERCH"],
+            "search_in": "description",
+            "contains": true
+          }
+        }
+      ]
+    },
+    {
+      "account_id": "11137480",
+      "use_bank_file": true,
+      "tabs": [
+        {
+          "name": "Hoja 1",
+          "prefix": "PMlib",
+          "part1": {
+            "entry_types": "XQ",
+            "patterns": ["AJ.?2248", "BA.?0008"],
+            "search_in": "item_text",
+            "contains": true
+          },
+          "part2": {
+            "entry_types": "ZB|ZR|BR|IB",
+            "patterns": ["PAYMASTE"],
+            "search_in": "item_text",
+            "contains": true
+          }
+        }
+      ]
+    },
+    {
+      "account_id": "111367-111368",
+      "use_bank_file": true,
+      "bank_filename": "EB_111367_111368.xlsx",
+      "tabs": [
+        {
+          "name": "Top Up",
+          "prefix": "Top Up Reconciliation",
+          "part1": {
+            "account_id": "11136820",
+            "entry_types": "DZ",
+            "amount_filter": "negative"
+          },
+          "part2": {
+            "account_id": "11136820",
+            "entry_types": "ZB|ZR|BR",
+            "patterns": ["Top Up", "Ftop"],
+            "search_in": "both"
+          }
+        },
+        {
+          "name": "Cashier 3 Bill Pay",
+          "prefix": "Bill Pay Matching",
+          "use_match": true,
+          "part1": {
+            "account_id": "11136880",
+            "entry_types": "DZ",
+            "amount_filter": "positive"
+          },
+          "part2": {
+            "account_id": "11136880",
+            "entry_types": "ZB|ZR|BR",
+            "patterns": ["BILL PAYMENT"],
+            "search_in": "both"
+          }
+        },
+        {
+          "name": "AB Entries",
+          "prefix": "AB Entries (Transfer 11136780 to 111373)",
+          "part1": {
+            "account_id": "11136780",
+            "patterns": ["BA\\\\|0760\\\\|", "BA\\\\|0766\\\\|", "BA\\\\|0762\\\\|"],
+            "search_in": "item_text"
+          },
+          "part2": {}
+        },
+        {
+          "name": "NCB & Bill Pay Rem",
+          "prefix": "NCB Monies & Bill Pay Remainder",
+          "load_remainder_from": "Cashier 3 Bill Pay",
+          "part1": {
+            "account_id": "11136780",
+            "patterns": ["BA\\\\|0003\\\\|"],
+            "search_in": "item_text"
+          },
+          "part2": {
+            "account_id": "11136780",
+            "entry_types": "IB",
+            "patterns": ["NCB MONIES"],
+            "search_in": "both"
+          }
+        },
+        {
+          "name": "Liberate",
+          "prefix": "Liberate Reconciliation",
+          "part1": {
+            "account_id": "11136780",
+            "entry_types": "XQ",
+            "patterns": ["BA\\\\|0760\\\\|", "BA\\\\|0766\\\\|", "BA\\\\|0762\\\\|", "BA\\\\|0003\\\\|", "AJ\\\\|2247\\\\|"],
+            "contains": false,
+            "search_in": "item_text"
+          },
+          "part2": {
+            "account_id": ["11136780", "11136280"],
+            "entry_types": "ZR|ZB|BR",
+            "patterns": ["EDC PAYMENT", "POS MERCH", "MC SALES", "VI SALES"],
+            "search_in": "both"
+          }
+        }
+      ]
+    }
+  ]
+}
